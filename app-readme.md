@@ -7,13 +7,6 @@
 
 https://openproject.org
 
-## TL;DR
-
-```bash
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
-$ helm dependency update
-$ helm install openproject --namespace openproject --set image.tag=1.21.1,replicaCount=1 ./
-```
 ## dependencies
 
 - Memcached
