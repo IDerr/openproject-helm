@@ -13,6 +13,26 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+openProjectEnv:
+  RAILS_CACHE_STORE: "memcache"
+  CACHE__MEMCACHE__SERVER: "cache:11211"
+  RAILS__RELATIVE__URL__ROOT: ""
+  RAILS_MIN_THREADS: "4"
+  RAILS_MAX_THREADS: "16"
+  USE_PUMA: "true"
+  # set to true to enable the email receiving feature. See ./docker/cron for more options
+  IMAP_ENABLED: "false"
+
+database:
+  username: "username-change-me"
+  password: "userpass-change-me"
+  host: "db-server.lab"
+  port: "5432"
+  name: "openproject"
+  pool: "20"
+  encoding: "unicode"
+  reconnect: "true"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
