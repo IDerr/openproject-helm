@@ -67,10 +67,10 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# livenessProbe:
+livenessProbe: {}
 #   initialDelaySeconds: 60
 #   periodSeconds: 60
-# readinessProbe:
+readinessProbe: {}
 #   initialDelaySeconds: 60
 #   periodSeconds: 60
 
