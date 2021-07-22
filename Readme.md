@@ -12,7 +12,11 @@ https://openproject.org
 ```bash
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update
-$ helm install openproject --namespace openproject --set image.tag=1.21.1,replicaCount=1 ./
+$ helm install openproject \
+               --namespace openproject \
+               --set image.tag=11.3.3 \
+               --set replicaCount=1 \
+               ./
 ```
 
 # Introduction
