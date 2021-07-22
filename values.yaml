@@ -85,7 +85,10 @@ persistence:
   accessMode: ReadWriteOnce
   size: 30Gi
 
+# encrypted base64 with
 openProjectEnv: {}
+  # FOO: 'YmFyCg==' # bar
+  # BAR: 'Zm9vCg==' # foo
 
 # Dependencies
 ## set bellow your best custom values for dependents' charts, e.g.:
@@ -118,4 +121,4 @@ postgresql:
 
   ## PostgreSQL database name and user password
   postgresqlDatabase: openproject
-  postgresqlPassword: S3cr3t-ch@nge-me
+  postgresqlPassword: S3cr3t-ch2nge-me
