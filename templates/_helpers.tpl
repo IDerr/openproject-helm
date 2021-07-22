@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Fully qualified PostgreSQL service name.
+*/}}
+{{- define "openproject.postgresql.fullname" -}}
+{{- printf "%s-%s" .Release.Name "postgresql" | trimSuffix "-" -}}
+{{- end -}}

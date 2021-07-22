@@ -14,7 +14,23 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update
 $ helm install openproject --namespace openproject --set image.tag=1.21.1,replicaCount=1 ./
 ```
+
+# Introduction
+
+This chart bootstraps a OpenProject deployment on a Kubernetes cluster using the Helm package manager.
+
+## Prerequisites
+
+- Kubernetes 1.12+
+- Helm 3.1.0
+- PV provisioner support in the underlying infrastructure
+
 ## dependencies
 
-- Memcached
+Please, make sure to read those documentations bellow to know how to set them up.
+
+- **Memcached**
   https://github.com/bitnami/charts/tree/master/bitnami/memcached
+
+- **PostgreSQL**
+  https://github.com/bitnami/charts/tree/master/bitnami/postgresql

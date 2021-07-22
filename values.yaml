@@ -4,32 +4,14 @@
 
 replicaCount: 1
 image:
-  repository: nginx
+  repository: openproject/community
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "11.3.3"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-openProjectEnv:
-  RAILS__RELATIVE__URL__ROOT: ""
-  RAILS_MIN_THREADS: "4"
-  RAILS_MAX_THREADS: "16"
-  USE_PUMA: "true"
-  # set to true to enable the email receiving feature. See ./docker/cron for more options
-  IMAP_ENABLED: "false"
-
-database:
-  username: "username-change-me"
-  password: "userpass-change-me"
-  host: "db-server.lab"
-  port: "5432"
-  name: "openproject"
-  pool: "20"
-  encoding: "unicode"
-  reconnect: "true"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -54,43 +36,43 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 8080
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: projetos.devel.ebc
+    - host: chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: projetos-devel-ebc-tls
+  #  - secretName: chart-example-local-tls
   #    hosts:
-  #      - projetos.devel.ebc
+  #      - chart-example.local
 
-resources:
+resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 1
-  maxReplicas: 30
+  maxReplicas: 100
   targetCPUUtilizationPercentage: 75
-  targetMemoryUtilizationPercentage: 90
+  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
@@ -98,14 +80,42 @@ tolerations: []
 
 affinity: {}
 
-# set your custom values for dependents' charts, e.g.:
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 30Gi
+
+openProjectEnv: {}
+
+# Dependencies
+## set bellow your best custom values for dependents' charts, e.g.:
+
+### Memcached
+### ref: https://github.com/bitnami/bitnami-docker-memcached#how-to-deploy-memcached-in-kubernetes
 memcached: {}
   ## Memcached admin user
-  ## ref: https://github.com/bitnami/bitnami-docker-memcached#creating-the-memcached-admin-user
-  ##
   # memcachedUsername:
 
   ## Memcached admin password
-  ## ref: https://github.com/bitnami/bitnami-docker-memcached#creating-the-memcached-admin-user
-  ##
   # memcachedPassword:
+
+### PostgreSQL
+database:
+  external: false
+  # username: "user"
+  # password: "s3cr3t"
+  # host: "hostname-fqdn"
+  # port: "5432"
+  # name: "openproject"
+
+#### if using external PostgreSQL remove ALL postgresql attributes bellow here
+### ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql#postgresql
+postgresql:
+  ## PostgreSQL persistence
+  persistence:
+    enabled: true
+    size: 20Gi
+
+  ## PostgreSQL database name and user password
+  postgresqlDatabase: openproject
+  postgresqlPassword: S3cr3t-ch@nge-me
