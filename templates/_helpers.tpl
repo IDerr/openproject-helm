@@ -65,5 +65,12 @@ Create the name of the service account to use
 Fully qualified PostgreSQL service name.
 */}}
 {{- define "openproject.postgresql.fullname" -}}
-{{- printf "%s-%s" .Release.Name "postgresql" | trimSuffix "-" -}}
+  {{- printf "%s-%s" .Release.Name "postgresql" | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
+Fully qualified memcached service name.
+*/}}
+{{- define "openproject.memcached.fullname" -}}
+  {{- printf "%s-%s" .Release.Name "memcached" | trimSuffix "-" | b64enc -}}
 {{- end -}}
