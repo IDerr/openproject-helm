@@ -67,12 +67,12 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-livenessProbe:
-  initialDelaySeconds: 60
-  periodSeconds: 60
-readinessProbe:
-  initialDelaySeconds: 60
-  periodSeconds: 60
+# livenessProbe:
+#   initialDelaySeconds: 60
+#   periodSeconds: 60
+# readinessProbe:
+#   initialDelaySeconds: 60
+#   periodSeconds: 60
 
 autoscaling:
   enabled: false
