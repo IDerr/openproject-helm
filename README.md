@@ -94,6 +94,7 @@ Setting custom environment variables to configure OpenProject, e.g.:
 openProjectEnv:
   FOO: 'YmFyCg==' # bar
   BAR: 'Zm9vCg==' # foo
+  OPENPROJECT_CACHE__MEMCACHE__SERVER: bWVtY2FjaGUtc2VydmVyLmxvY2Fs # memcache-server.local
   OPENPROJECT_SHOW__COMMUNITY__LINKS: dHJ1ZQ== # true
   # ...
 ```
@@ -106,4 +107,4 @@ Apache License, Version 2.0
 
 > Apache 2.0
 
-***Keep C.A.L.M.S. and kick unqualified Cloud Native Solutions out***
+***Keep C.A.L.M.S. and have fun...***
