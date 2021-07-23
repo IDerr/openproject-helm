@@ -1,16 +1,15 @@
-# <span>OpenProject.org</span> Helm Chart 
+# <span>OpenProject.org</span> Helm Chart
 
 ## What is OpenProject?
 
-> "***Open source project management software***.  
-> *Efficient classic, agile or hybrid project management in a secure environment*.  
+> "***Open source project management software***.
+> *Efficient classic, agile or hybrid project management in a secure environment*.
 > *OpenProject supports projects throughout the whole life-cycle*". - <span>OpenProject.org</span>
 
 ## TL;DR
 
 ```bash
 $ helm repo add <HELM_REPO> <HELM_REPO_URI>
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update
 $ helm install openproject <HELM_REPO>/openproject
 ```
@@ -49,7 +48,7 @@ The command removes all the Kubernetes components but PVC's associated with the 
 
 ## Dependencies
 
-Please, make sure to read those documentations bellow to know how to set them up.
+Please, make sure to read those documentations bellow to know how to set their parameters up.
 
 - **Memcached**
   https://github.com/bitnami/charts/tree/master/bitnami/memcached
@@ -59,7 +58,29 @@ Please, make sure to read those documentations bellow to know how to set them up
 
 ## Parameters
 
-> TBD
+### <span>OpenProject.org</span> parameters
+
+| Name                            | Description                                                                                         | Value                           |
+| ------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `image.registry`                | OpenProject image registry                                                                          | `docker.io`                     |
+| `image.repository`              | OpenProject image repository                                                                        | `openproject/community`         |
+| `image.tag`                     | OpenProject image tag (immutable tags are recommended)                                              | `11.3.3`                        |
+| `image.pullPolicy`              | OpenProject image pull policy                                                                       | `IfNotPresent`                  |
+| `image.pullSecrets`             | Specify image pull secrets                                                                          | `[]`                            |
+| `persistence.enabled`           | Enable persistence using PVC                                                                        | `true`                          |
+| `persistence.existingClaim`     | Provide an existing `PersistentVolumeClaim`                                                         | `""`                            |
+| `persistence.size`              | PVC Storage Request for OpenProject volume                                                          | `8Gi`                           |
+| `persistence.accessMode`        | PVC Access Mode for OpenProject volume                                                              | `ReadWriteOnce`                 |
+| `ingress.enabled`               | Set to true to enable ingress record generation                                                     | `false`                         |
+| `ingress.hosts`                 | When the ingress is enabled, a host pointing is created                                             | `[]`, e.g.: `openproject.local` |
+| `ingress.tls`                   | TLS secret to be used when the ingress is enabled                                                   | `[]`                            |
+| `postgresql.enabled`            | Set to `true` to enable deploy *PostgreSQL* on Kubernetes or `false` to an external database server | `true`                          |
+| `postgresql.postgresqlDatabase` | Set PostgreSQL database name                                                                        | `openproject`                   |
+| `postgresql.postgresqlUsername` | Set PostgreSQL database username                                                                    | `openproject`                   |
+| `postgresql.postgresqlPassword` | Set PostgreSQL database password                                                                    | `S3cr3t-ch2nge-me`              |
+| `postgresql.host`               | If an external database server, set the `hostname` of PostgreSQL                                    | `postgresql-server.local`       |
+| `postgresql.port`               | If an external database server, set the `port` of PostgreSQL                                        | `5432`                          |
+| `memcached.enabled`             | Set to `true` to enable deploy Memcached on Kubernetes or `false` to an external *Memcached* server.<br> Set `OPENPROJECT_CACHE__MEMCACHE__SERVER` on the secret created already                                                                     | `true`                      |
 
 ## License
 
