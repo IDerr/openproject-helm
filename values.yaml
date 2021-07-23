@@ -102,25 +102,18 @@ openProjectEnv: {}
 
 ### Memcached
 ### ref: https://github.com/bitnami/bitnami-docker-memcached#how-to-deploy-memcached-in-kubernetes
-memcached: {}
+memcached:
+  enabled: true
   ## Memcached admin user
   # memcachedUsername:
 
   ## Memcached admin password
   # memcachedPassword:
 
-### PostgreSQL
-database:
-  external: false
-  # username: "user"
-  # password: "s3cr3t"
-  # host: "hostname-fqdn"
-  # port: "5432"
-  # name: "openproject"
-
-#### if using external PostgreSQL remove ALL postgresql attributes bellow here
+#### if using external PostgreSQL setup host and port attributes bellow
 ### ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql#postgresql
 postgresql:
+  enabled: true
   ## PostgreSQL persistence
   persistence:
     enabled: true
@@ -128,4 +121,9 @@ postgresql:
 
   ## PostgreSQL database name and user password
   postgresqlDatabase: openproject
+  postgresqlUsername: openproject
   postgresqlPassword: S3cr3t-ch2nge-me
+  
+  ### external PostgreSQL server
+  # host: "hostname-fqdn"
+  # port: "5432"
