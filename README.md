@@ -1,10 +1,10 @@
-# <span>OpenProject.org</span> Helm Chart
+# OpenProject.org[]() Helm Chart
 
 ## What is OpenProject?
 
 > "***Open source project management software***.
 > *Efficient classic, agile or hybrid project management in a secure environment*.
-> *OpenProject supports projects throughout the whole life-cycle*". - <span>OpenProject.org</span>
+> *OpenProject supports projects throughout the whole life-cycle*". - OpenProject.org[]()
 
 ## TL;DR
 
@@ -58,15 +58,17 @@ Please, make sure to read those documentations bellow to know how to set their p
 
 ## Parameters
 
-### <span>OpenProject.org</span> parameters
+### OpenProject.org[]() parameters
 
 | Name                            | Description                                                                                         | Value                           |
 | ------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `openProjectEnv`                | Set custom environment variables to configure OpenProject                                           | `{}`, read [bellow](#openprojectorg-environment-variables)|
 | `image.registry`                | OpenProject image registry                                                                          | `docker.io`                     |
 | `image.repository`              | OpenProject image repository                                                                        | `openproject/community`         |
 | `image.tag`                     | OpenProject image tag (immutable tags are recommended)                                              | `11.3.3`                        |
 | `image.pullPolicy`              | OpenProject image pull policy                                                                       | `IfNotPresent`                  |
 | `image.pullSecrets`             | Specify image pull secrets                                                                          | `[]`                            |
+| `volumeMounts.mountPath`        | Set path to mount for OpenProject artifacts and files                                               | `/opt/openproject/storage`      |
 | `persistence.enabled`           | Enable persistence using PVC                                                                        | `true`                          |
 | `persistence.existingClaim`     | Provide an existing `PersistentVolumeClaim`                                                         | `""`                            |
 | `persistence.size`              | PVC Storage Request for OpenProject volume                                                          | `8Gi`                           |
@@ -81,6 +83,22 @@ Please, make sure to read those documentations bellow to know how to set their p
 | `postgresql.host`               | If an external database server, set the `hostname` of PostgreSQL                                    | `postgresql-server.local`       |
 | `postgresql.port`               | If an external database server, set the `port` of PostgreSQL                                        | `5432`                          |
 | `memcached.enabled`             | Set to `true` to enable deploy Memcached on Kubernetes or `false` to an external *Memcached* server.<br> Set `OPENPROJECT_CACHE__MEMCACHE__SERVER` on the secret created already                                                                     | `true`                      |
+
+Check more options on [`values.yaml`](values.yaml).
+
+#### OpenProjectorg[]() environment variables
+
+Setting custom environment variables to configure OpenProject, e.g.:
+
+```yaml
+openProjectEnv:
+  FOO: 'YmFyCg==' # bar
+  BAR: 'Zm9vCg==' # foo
+  OPENPROJECT_SHOW__COMMUNITY__LINKS: dHJ1ZQ== # true
+  # ...
+```
+
+> All variables' values needs to be encoded in `base64` standard.
 
 ## License
 

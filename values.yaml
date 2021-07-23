@@ -87,6 +87,9 @@ tolerations: []
 
 affinity: {}
 
+volumeMounts: {}
+  #  mountPath: /opt/openproject/storage
+
 persistence:
   enabled: true
   accessMode: ReadWriteOnce

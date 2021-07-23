@@ -55,7 +55,7 @@ spec:
             - secretRef:
                 name: {{ include "openproject.fullname" . | lower }}
           volumeMounts:
-            - mountPath: /var/openproject
+            - mountPath: {{ .Values.volumeMounts.mountPath | default "/opt/openproject/storage" }}
               name: openproject-data
       volumes:
         - name: openproject-data
