@@ -29,7 +29,7 @@ This chart bootstraps a OpenProject deployment on a Kubernetes cluster using the
 - Helm 3.1.0
 - PV provisioner support in the underlying infrastructure
 
-## dependencies
+## Dependencies
 
 Please, make sure to read those documentations bellow to know how to set them up.
 
