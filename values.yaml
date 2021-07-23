@@ -90,7 +90,10 @@ affinity: {}
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
-  size: 30Gi
+  size: 8Gi
+  ## provide an existing `PersistentVolumeClaim`, the value is evaluated as a template.
+  ## PVC must be created manually before volume will be bound
+  existingClaim: ""
 
 # encrypted base64 with
 openProjectEnv: {}
@@ -113,12 +116,12 @@ postgresql:
   ## PostgreSQL persistence
   persistence:
     enabled: true
-    size: 20Gi
+    size: 10Gi
 
   ## PostgreSQL database name and user password
   postgresqlDatabase: openproject
   postgresqlUsername: openproject
-  postgresqlPassword: S3cr3t-ch2nge-me  
+  postgresqlPassword: S3cr3t-ch2nge-me
   ### for external PostgreSQL server
   # host: "hostname-fqdn"
   # port: "5432"

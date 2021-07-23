@@ -53,7 +53,18 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           envFrom:
             - secretRef:
-                name: {{ include "openproject.fullname" . | lower }}         
+                name: {{ include "openproject.fullname" . | lower }}
+          volumeMounts:
+            - mountPath: /var/openproject
+              name: openproject-data
+      volumes:
+        - name: openproject-data
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "openproject.fullname" .) }}
+        {{- else }}
+          emptyDir: {}
+        {{ end }}
 
       {{- with .Values.nodeSelector }}
       nodeSelector:
