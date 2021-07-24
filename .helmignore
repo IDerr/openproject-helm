@@ -21,4 +21,6 @@
 .idea/
 *.tmproj
 .vscode/
+# Temp files
 .values*
+draft.md

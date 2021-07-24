@@ -22,4 +22,6 @@
 *.tmproj
 .vscode/
 *.tgz
+# Temp files
 .values*
+draft.md
