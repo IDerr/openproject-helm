@@ -74,3 +74,34 @@ Fully qualified memcached service name.
 {{- define "openproject.memcached.fullname" -}}
   {{- printf "%s-%s" .Release.Name "memcached" | trimSuffix "-" | b64enc -}}
 {{- end -}}
+
+{{/*
+Fully qualified database URI.
+*/}}
+{{- define "openproject.databaseURI" -}}
+  {{- $databaseURI := "" -}}
+  {{- if and (not .Values.postgresql.enabled) (and .Values.postgresql.host .Values.postgresql.name) -}}
+    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s%s%s" "postgres://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" .Values.postgresql.host ":" .Values.postgresql.port "/" .Values.postgresql.postgresqlDatabase ) -}}
+    {{- if or .Values.postgresql.pool .Values.postgresql.encoding .Values.postgresql.reconnect -}}
+      {{- $databaseURI = (printf "%s%s" $databaseURI "?") -}}
+      {{- if .Values.postgresql.pool -}}
+        {{- $databaseURI = (printf "%s%s%s" $databaseURI "pool=" .Values.postgresql.pool ) -}}
+      {{- end -}}
+      {{- if .Values.postgresql.encoding -}}
+        {{- if .Values.postgresql.pool -}}
+          {{- $databaseURI = (printf "%s%s" $databaseURI "&" ) -}}
+        {{- end -}}
+        {{- $databaseURI = (printf "%s%s%s" $databaseURI "encoding=" .Values.postgresql.encoding ) -}}
+      {{- end -}}
+      {{- if .Values.postgresql.reconnect -}}
+        {{- if or .Values.postgresql.pool .Values.postgresql.encoding -}}
+          {{- $databaseURI = (printf "%s%s" $databaseURI "&" ) -}}
+        {{- end -}}
+        {{- $databaseURI = (printf "%s%s%s" $databaseURI "reconnect=" .Values.postgresql.reconnect ) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s" "postgresql://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" (include "openproject.postgresql.fullname" . | lower ) "/" .Values.postgresql.postgresqlDatabase ) -}}
+  {{- end -}}
+  {{- printf "%s" $databaseURI | b64enc -}}
+{{- end -}}
