@@ -2,15 +2,23 @@
 
 ## What is OpenProject?
 
-> "***Open source project management software***.
-> *Efficient classic, agile or hybrid project management in a secure environment*.
-> *OpenProject supports projects throughout the whole life-cycle*". - OpenProject.org[]()
+> "***Open source project management software***.\
+> *Efficient classic, agile or hybrid project management in a secure environment*.\
+> *OpenProject supports projects throughout the whole life-cycle*". – [OpenProject.org](https://openproject.org)
+
+### OpenProject Community live
+
+The on line's community project where the development of the OpenProject software
+and plugins takes place.
+
+Check it out there:
+> https://community.openproject.org/projects/openproject/
+
 
 ## TL;DR
 
 ```bash
 $ helm repo add <HELM_REPO> <HELM_REPO_URI>
-$ helm dependency update
 $ helm install openproject <HELM_REPO>/openproject
 $ helm uninstall openproject
 ```
@@ -51,10 +59,10 @@ The command removes all the Kubernetes components but PVC's associated with the 
 
 Please, make sure to read those documentations bellow to know how to set their parameters up.
 
-- **Memcached**
+- **Memcached**  
   https://github.com/bitnami/charts/tree/master/bitnami/memcached
 
-- **PostgreSQL**
+- **PostgreSQL**  
   https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 
 ## Parameters
