@@ -38,7 +38,7 @@ spec:
               containerPort: 8080
               protocol: TCP
           livenessProbe:
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds | default 60 }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds | default 180 }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds | default 60 }}
             httpGet:
               path: /
