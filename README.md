@@ -12,6 +12,7 @@
 $ helm repo add <HELM_REPO> <HELM_REPO_URI>
 $ helm dependency update
 $ helm install openproject <HELM_REPO>/openproject
+$ helm uninstall openproject
 ```
 
 ## Introduction
@@ -21,7 +22,7 @@ This chart bootstraps an [OpenProject.org](https://openproject.org) deployment o
 ## Prerequisites
 
 - Kubernetes 1.12+
-- Helm 3.1.0
+- Helm 3.1+
 - PV provisioner support in the underlying infrastructure
 
 ## Installing the Chart
