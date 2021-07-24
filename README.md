@@ -8,7 +8,7 @@
 
 ### OpenProject Community live
 
-The on line's community project where the development of the OpenProject software
+The online community project where the development of the OpenProject software
 and plugins takes place.
 
 Check it out there:
@@ -25,7 +25,8 @@ $ helm uninstall openproject
 
 ## Introduction
 
-This chart bootstraps an [OpenProject.org](https://openproject.org) deployment on a Kubernetes cluster using the Helm package manager.
+This chart bootstraps an [OpenProject.org](https://openproject.org) deployment
+on a Kubernetes cluster using the Helm package manager.
 
 ## Prerequisites
 
@@ -57,7 +58,7 @@ The command removes all the Kubernetes components but PVC's associated with the 
 
 ## Dependencies
 
-Please, make sure to read those documentations bellow to know how to set their parameters up.
+Please, make sure to read those documentations to know how to set their parameters up.
 
 - **Memcached**  
   https://github.com/bitnami/charts/tree/master/bitnami/memcached
