@@ -34,6 +34,9 @@ on a Kubernetes cluster using the Helm package manager.
 - Helm 3.1+
 - PV provisioner support in the underlying infrastructure
 
+> ***Attention***:\
+> *Application storage root path is (fixed awhile)*: `/var/openproject`.
+
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
@@ -78,7 +81,6 @@ Please, make sure to read those documentations to know how to set their paramete
 | `image.tag`                     | OpenProject image tag (immutable tags are recommended)                                              | `11.3.3`                        |
 | `image.pullPolicy`              | OpenProject image pull policy                                                                       | `IfNotPresent`                  |
 | `image.pullSecrets`             | Specify image pull secrets                                                                          | `[]`                            |
-| `volumeMounts.mountPath`        | Set path to mount for OpenProject artifacts and files                                               | `/opt/openproject/storage`      |
 | `persistence.enabled`           | Enable persistence using PVC                                                                        | `true`                          |
 | `persistence.existingClaim`     | Provide an existing `PersistentVolumeClaim`                                                         | `""`                            |
 | `persistence.size`              | PVC Storage Request for OpenProject volume                                                          | `8Gi`                           |
