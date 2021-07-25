@@ -27,7 +27,7 @@ Please, make sure to read those documentations to know how to set their paramete
 
 Take the following environment variables and fill them in the "***Answers***" bellow.
 
-Hey! These settings are for demonstration purposes only - and to calm down your anxiety...
+***Hey! These settings are for demonstration purposes only - and to calm down your anxiety...***
 
 ```bash
 ingress.hosts[0].host=OPENPROJECT.DOMAIN-CHANGE.ME
