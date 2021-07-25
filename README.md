@@ -149,4 +149,4 @@ Apache License, Version 2.0
 
 > Apache 2.0
 
-***Keep C.A.L.M.S. and have fun...***
+***Keep C.A.L.M.S. and kick unmanaged projects out...***
