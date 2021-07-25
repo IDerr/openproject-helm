@@ -1,0 +1,16 @@
+---
+image: alpine:3.14.0
+
+job to run on gitlab only:
+  rules:
+    - if: '$CI_SERVER_URL == "https://gitlab.com"'
+  before_script:
+    - apk add curl
+    - curl -Lo /tmp/helm.tgz https://get.helm.sh/helm-v3.6.3-linux-amd64.tar.gz
+    - tar zxf /tmp/helm.tgz -C /tmp
+    - mv /tmp/linux-amd64/helm /usr/local/bin
+  script:
+    - helm repo add bitnami https://charts.bitnami.com/bitnami
+    - helm dependency build
+    - helm package ./
+    - 'curl --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@openproject-$(helm show chart .|grep "^version:"|tr -d "version: ").tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"'
