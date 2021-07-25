@@ -106,12 +106,13 @@ openProjectEnv: {}
 ### Memcached
 ### ref: https://github.com/bitnami/bitnami-docker-memcached#how-to-deploy-memcached-in-kubernetes
 memcached:
-  #### if using external Memcached setup your best custom secret
+  #### if using external Memcached change enabled=false and setup your best custom secret
   enabled: true
 
 #### if using external PostgreSQL setup host and port attributes bellow
 ### ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql#postgresql
 postgresql:
+  ## if using external PostgreSQL server, change enabled=false
   enabled: true
   ## PostgreSQL persistence
   persistence:
