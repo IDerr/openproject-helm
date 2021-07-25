@@ -2,6 +2,7 @@
 image: alpine:3.14.0
 
 job to run on gitlab only:
+  stage: build
   rules:
     - if: '$CI_SERVER_URL == "https://gitlab.com"'
   before_script:
