@@ -79,29 +79,20 @@ Fully qualified memcached service name.
 Fully qualified database URI.
 */}}
 {{- define "openproject.databaseURI" -}}
-  {{- $databaseURI := "" -}}
-  {{- if and (not .Values.postgresql.enabled) (and .Values.postgresql.host .Values.postgresql.name) -}}
-    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s%s%s" "postgres://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" .Values.postgresql.host ":" .Values.postgresql.port "/" .Values.postgresql.postgresqlDatabase ) -}}
-    {{- if or .Values.postgresql.pool .Values.postgresql.encoding .Values.postgresql.reconnect -}}
-      {{- $databaseURI = (printf "%s%s" $databaseURI "?") -}}
-      {{- if .Values.postgresql.pool -}}
-        {{- $databaseURI = (printf "%s%s%s" $databaseURI "pool=" .Values.postgresql.pool ) -}}
-      {{- end -}}
-      {{- if .Values.postgresql.encoding -}}
-        {{- if .Values.postgresql.pool -}}
-          {{- $databaseURI = (printf "%s%s" $databaseURI "&" ) -}}
-        {{- end -}}
-        {{- $databaseURI = (printf "%s%s%s" $databaseURI "encoding=" .Values.postgresql.encoding ) -}}
-      {{- end -}}
-      {{- if .Values.postgresql.reconnect -}}
-        {{- if or .Values.postgresql.pool .Values.postgresql.encoding -}}
-          {{- $databaseURI = (printf "%s%s" $databaseURI "&" ) -}}
-        {{- end -}}
-        {{- $databaseURI = (printf "%s%s%s" $databaseURI "reconnect=" .Values.postgresql.reconnect ) -}}
-      {{- end -}}
-    {{- end -}}
-  {{- else -}}
+  {{ $databaseURI := "" }}
+  {{- if .Values.postgresql.enabled -}}
     {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s" "postgresql://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" (include "openproject.postgresql.fullname" . | lower ) "/" .Values.postgresql.postgresqlDatabase ) -}}
+  {{- else -}}
+    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s%s%s" "postgres://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" .Values.postgresql.host ":" .Values.postgresql.port "/" .Values.postgresql.postgresqlDatabase ) -}}
   {{- end -}}
   {{- printf "%s" $databaseURI | b64enc -}}
+{{- end -}}
+
+{{/*
+Openproject Deployment root path to storage app attachments and database data.
+*/}}
+{{- define "openproject.storageRootPath" }}
+  {{- if .Values.volumeMounts }}{{ if and .Values.volumeMounts .Values.volumeMounts.mountPath }}
+    {{- printf "%s" .Values.volumeMounts.mountPath -}}
+  {{- end }}{{ end }}
 {{- end -}}
