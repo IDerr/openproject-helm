@@ -30,7 +30,7 @@ on a Kubernetes cluster using the Helm package manager.
 
 ## Prerequisites
 
-- Kubernetes 1.12+
+- Rancher-2.4+ [^rancher] or Kubernetes 1.12+
 - Helm 3.1+
 - PV provisioner support in the underlying infrastructure
 

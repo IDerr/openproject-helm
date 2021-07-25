@@ -21,7 +21,7 @@ Please, make sure to read those documentations to know how to set their paramete
   https://github.com/bitnami/charts/tree/master/bitnami/memcached
 
 - **PostgreSQL**  
-  https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+  https://github.com/bitnami/charts/tree/master/bitnami/postgresql  
 
 
 > ***Attention***:\
