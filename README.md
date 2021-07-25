@@ -17,9 +17,39 @@ Check it out there:
 
 ## TL;DR
 
+### Are you looking forward for a demo?
+
+#### Rancher catalog
+
+Custom catalogs can be added into Rancher at a global scope, cluster scope, or project scope.
+
+**Prerequisite**: as *admin* or *cluster onwership* role you has the ability to add or remove cluster or project catalogs in Rancher.
+
+- Catalog:
+  - Name: `adrianovieira`
+  - URL: `https://gitlab.com/api/v4/projects/28363496/packages/helm/stable`
+  - Helm version: `v3`
+
+Them launch an "***Apps***" based on this catalog!
+
+Check this documentation out if you need any details:
+> Rancher - Adding Catalog Repositories (in cluster or project level):\
+> https://rancher.com/docs/rancher/v2.x/en/helm-charts/legacy-catalogs/adding-catalogs/
+
+#### Helm chart
+
+***Hey! These settings are for demonstration purposes only - and to calm down your anxiety...***
+
 ```bash
-$ helm repo add <HELM_REPO> <HELM_REPO_URI>
-$ helm install openproject <HELM_REPO>/openproject
+$ helm repo add adrianovieira https://gitlab.com/api/v4/projects/28363496/packages/helm/stable
+$ helm repo update
+$ helm install openproject adrianovieira/openproject \
+                --set "ingress.enabled=true" \
+                --set "ingress.hosts[0].paths[0].path=/" \
+                --set "persistence.enabled=false" \
+                --set "postgresql.persistence.enabled=false" \
+                --set "ingress.hosts[0].host=OPENPROJECT.DOMAIN-CHANGE.ME"
+
 $ helm uninstall openproject
 ```
 

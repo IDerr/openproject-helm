@@ -23,10 +23,6 @@ Please, make sure to read those documentations to know how to set their paramete
 - **PostgreSQL**  
   https://github.com/bitnami/charts/tree/master/bitnami/postgresql  
 
-
-> ***Attention***:\
-> *Application storage root path is (fixed awhile)*: `/var/openproject`.
-
 ## Are you looking forward for a demo?
 
 Take the following environment variables and fill them in the "***Answers***" bellow.
@@ -40,3 +36,8 @@ ingress.hosts[0].paths[0].path=/
 persistence.enabled=false
 postgresql.persistence.enabled=false
 ```
+
+---
+> ***Attention***:\
+> *Application storage root path is (fixed awhile)*: `/var/openproject`.
+---
