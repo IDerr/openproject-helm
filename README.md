@@ -93,10 +93,10 @@ The command removes all the Kubernetes components but PVC's associated with the 
 
 Please, make sure to read those documentations to know how to set their parameters up.
 
-- **Memcached**  
+- **Memcached**
   https://github.com/bitnami/charts/tree/master/bitnami/memcached
 
-- **PostgreSQL**  
+- **PostgreSQL**
   https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 
 ## Parameters
@@ -142,6 +142,11 @@ openProjectEnv:
 ```
 
 > All variables' values needs to be encoded in `base64` standard.
+
+## Authors
+
+- Mantainer: [Empresa Brasil de Comunicação](https://ebc.com.br)
+- Upstream repo: https://gitlab.com/adrianovieira/openproject.org-helm-chart
 
 ## License
 
