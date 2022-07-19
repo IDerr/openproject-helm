@@ -119,9 +119,9 @@ Please, make sure to read those documentations to know how to set their paramete
 | `ingress.hosts`                 | When the ingress is enabled, a host pointing is created                                             | `[]`, e.g.: `openproject.local` |
 | `ingress.tls`                   | TLS secret to be used when the ingress is enabled                                                   | `[]`                            |
 | `postgresql.enabled`            | Set to `true` to enable deploy *PostgreSQL* on Kubernetes or `false` to an external database server | `true`                          |
-| `postgresql.postgresqlDatabase` | Set PostgreSQL database name                                                                        | `openproject`                   |
-| `postgresql.postgresqlUsername` | Set PostgreSQL database username                                                                    | `openproject`                   |
-| `postgresql.postgresqlPassword` | Set PostgreSQL database password                                                                    | `S3cr3t-ch2nge-me`              |
+| `postgresql.auth.database` | Set PostgreSQL database name                                                                        | `openproject`                   |
+| `postgresql.auth.username` | Set PostgreSQL database username                                                                    | `openproject`                   |
+| `postgresql.auth.password` | Set PostgreSQL database password                                                                    | `S3cr3t-ch2nge-me`              |
 | `postgresql.host`               | If an external database server, set the `hostname` of PostgreSQL                                    | `postgresql-server.local`       |
 | `postgresql.port`               | If an external database server, set the `port` of PostgreSQL                                        | `5432`                          |
 | `memcached.enabled`             | Set to `true` to enable deploy Memcached on Kubernetes or `false` to an external *Memcached* server.<br> Set `OPENPROJECT_CACHE__MEMCACHE__SERVER` on the secret created already                                                                     | `true`                      |

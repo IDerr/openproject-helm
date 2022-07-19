@@ -81,9 +81,9 @@ Fully qualified database URI.
 {{- define "openproject.databaseURI" -}}
   {{ $databaseURI := "" }}
   {{- if .Values.postgresql.enabled -}}
-    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s" "postgresql://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" (include "openproject.postgresql.fullname" . | lower ) "/" .Values.postgresql.postgresqlDatabase ) -}}
+    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s" "postgresql://" .Values.postgresql.auth.username ":" .Values.postgresql.auth.password "@" (include "openproject.postgresql.fullname" . | lower ) "/" .Values.postgresql.auth.database ) -}}
   {{- else -}}
-    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s%s%s" "postgres://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@" .Values.postgresql.host ":" .Values.postgresql.port "/" .Values.postgresql.postgresqlDatabase ) -}}
+    {{- $databaseURI = (printf "%s%s%s%s%s%s%s%s%s%s" "postgres://" .Values.postgresql.auth.username ":" .Values.postgresql.auth.password "@" .Values.postgresql.host ":" .Values.postgresql.port "/" .Values.postgresql.auth.database ) -}}
   {{- end -}}
   {{- printf "%s" $databaseURI | b64enc -}}
 {{- end -}}

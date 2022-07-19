@@ -121,9 +121,10 @@ postgresql:
     size: 10Gi
 
   ## PostgreSQL database name and user password
-  postgresqlDatabase: openproject
-  postgresqlUsername: openproject
-  postgresqlPassword: S3cr3t-ch2nge-me
+  auth:
+    database: openproject
+    username: openproject
+    password: S3cr3t-ch2nge-me
   ### for external PostgreSQL server
   # host: "postgresql-server.local"
   # port: "5432"
