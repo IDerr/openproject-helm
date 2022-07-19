@@ -23,13 +23,13 @@ version: 0.0.20
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 icon: https://www.openproject.org/assets/images/openproject-logo-color-c9a6dfe3.svg
-appVersion: "11.3.3"
+appVersion: "12.1.6"
 dependencies:
   - name: memcached
     condition: memcached.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: 5.13.4
+    version: 6.x.x
   - name: postgresql
     condition: postgresql.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: 10.7.0
+    version: 11.x.x
