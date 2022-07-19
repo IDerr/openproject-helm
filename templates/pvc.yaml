@@ -1,0 +1,25 @@
+{{- $persistence := .Values.persistence -}}
+{{- if $persistence.enabled }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "openproject.fullname" . }}
+  annotations:
+  {{- range $key, $value := $persistence.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  accessModes: 
+    - {{ $persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ $persistence.size }}
+  {{- if $persistence.storageClass }}
+    {{- if eq "-" $persistence.storageClass }}
+  storageClassName: ""
+    {{- else }}
+  storageClassName: {{ $persistence.storageClass }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}
